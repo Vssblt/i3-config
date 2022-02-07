@@ -5,7 +5,7 @@ if [ "$has_polybar" == "" ]; then
   nohup polybar Vssblt --config=./.config/polybar/config >/dev/null 2>&1 & 
 fi
 xset r rate 200 25
-cvt 2560 1600 120
-xrandr --newmode "2560x1600_120.00"  734.75  2560 2784 3064 3568  1600 1603 1609 1717 -hsync +vsync
-xrandr --addmode eDP-1 2560x1600_120.00
-xrandr -s 2560x1600_120.00 -r 120
+#cvt 2560 1600 100
+#xrandr --newmode "2560x1600_100.00"  734.75  2560 2784 3064 3568  1600 1603 1609 1717 -hsync +vsync
+#xrandr --addmode eDP-1 2560x1600_120.00
+#xrandr -s 2560x1600_120.00 -r 120
