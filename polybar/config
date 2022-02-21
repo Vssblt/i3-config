@@ -366,15 +366,15 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = "|   Battery: "
-animation-charging-1 = "|   Battery: "
-animation-charging-2 = "|   Battery: "
+animation-charging-0 = "|   Charging: "
+animation-charging-1 = "|   Charging: "
+animation-charging-2 = "|   Charging: "
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = "|   Battery: "
-animation-discharging-1 = "|   Battery: "
-animation-discharging-2 = "|   Battery: "
+animation-discharging-0 = "|   Discharging: "
+animation-discharging-1 = "|   Discharging: "
+animation-discharging-2 = "|   Discharging: "
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
