@@ -8,6 +8,24 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+for_window [class=".*"] border pixel 5
+client.focused          #b58900 #b58900 #fdf6e3 #cb4b16
+client.focused_inactive #073642 #073642 #fdf6e3 #073642
+client.unfocused        #073642 #073642 #fdf6e3 #073642
+
+for_window [class="Gnome-screenshot"] floating enable
+for_window [class="Gmrun"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+# Gaps examples
+#gaps inner 2
+#gaps inner all set 20
+#gaps outer current plus 5
+#gaps horizontal current plus 40
+#gaps outer current toggle 60
 
 set $mod Mod4
 
@@ -24,7 +42,10 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xset r rate 140 35
+exec --no-startup-id xset s 300 600
+exec --no-startup-id xautolock -time 10 -locker '/usr/local/bin/betterlockscreen -l dim --off 30'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -32,16 +53,18 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xfce4-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+quotedbl kill
@@ -56,9 +79,11 @@ bindsym $mod+e exec "rofi -modi run,run -show run -dpi 96"
 
 # change focus
 bindsym $mod+h focus left
-bindsym $mod+t focus down
-bindsym $mod+n focus up
+bindsym $mod+n focus down
+bindsym $mod+t focus up
 bindsym $mod+s focus right
+
+bindsym $mod+l exec /usr/local/bin/betterlockscreen -l dim --off 30 &
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -68,8 +93,8 @@ bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+H move left
-bindsym $mod+Shift+T move down
-bindsym $mod+Shift+N move up
+bindsym $mod+Shift+N move down
+bindsym $mod+Shift+T move up
 bindsym $mod+Shift+S move right
 
 # alternatively, you can use the cursor keys:
@@ -96,13 +121,13 @@ bindsym $mod+period layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Ctrl+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus parent
 
 # focus the child container
-bindsym $mod+Shift+a focus child
+bindsym $mod+a focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -116,6 +141,9 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+workspace $ws1 output DP-4
+workspace $ws2 output DP-0
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -156,16 +184,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 3 px or 3 ppt
-        bindsym t resize grow height 3 px or 3 ppt
-        bindsym n resize shrink height 3 px or 3 ppt
-        bindsym s resize grow width 3 px or 3 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym t resize grow height 10 px or 10 ppt
+        bindsym n resize shrink height 10 px or 10 ppt
+        bindsym s resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 3 px or 3 ppt
-        bindsym Down resize grow height 3 px or 3 ppt
-        bindsym Up resize shrink height 3 px or 3 ppt
-        bindsym Right resize grow width 3 px or 3 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -175,10 +203,24 @@ mode "resize" {
 
 bindsym $mod+p mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-}
-exec_always --no-startup-id ibus-daemon -dr
-exec_always --no-startup-id ~/.init
+# scratchpad
+bindsym $mod+b move scratchpad 
+bindsym $mod+Shift+b scratchpad show
+bindsym Ctrl+$mod+a exec /usr/bin/flameshot gui
+
+bindsym $mod+Prior exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% 
+bindsym $mod+Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% 
+bindsym $mod+Shift+Prior exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100% 
+bindsym $mod+Shift+Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 0% 
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
+
+exec --no-startup-id /usr/bin/bash ~/.config/polybar/launch.sh --grayblocks 
+exec --no-startup-id trayer --transparent tray --alpha 0 --edge bottom --tint 0x272727 --height 24 --align right --iconspacing 3 --monitor 1
+exec --no-startup-id wallpaper-engine --screen-root DP-2 --fps 30 2077531652 
+exec --no-startup-id /usr/bin/fcitx5 -d 
+exec --no-startup-id /usr/bin/steam
+exec --no-startup-id /snap/bin/telegram-desktop -startintray
+exec --no-startup-id /usr/bin/birdtray
+exec --no-startup-id /usr/bin/blueman-applet
+exec --no-startup-id /usr/bin/feh --bg-fill /home/vssblt/Pictures/壁纸/wallhaven-508096.jpg /home/vssblt/Pictures/壁纸/v2-f21709dbcbb040657b1df70e49943b54_r.jpg
