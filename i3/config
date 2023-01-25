@@ -216,11 +216,11 @@ bindsym $mod+Shift+Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK
 #bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
 exec --no-startup-id /usr/bin/bash ~/.config/polybar/launch.sh --grayblocks 
-exec --no-startup-id trayer --transparent tray --alpha 0 --edge bottom --tint 0x272727 --height 24 --align right --iconspacing 3 --monitor 1
+exec --no-startup-id trayer --transparent tray --alpha 0 --edge bottom --tint 0x272727 --height 24 --align right --iconspacing 3 --monitor 0
 exec --no-startup-id wallpaper-engine --screen-root DP-2 --fps 30 2077531652 
 exec --no-startup-id /usr/bin/fcitx5 -d 
 exec --no-startup-id /usr/bin/steam
 exec --no-startup-id /snap/bin/telegram-desktop -startintray
 exec --no-startup-id /usr/bin/birdtray
 exec --no-startup-id /usr/bin/blueman-applet
-exec --no-startup-id /usr/bin/feh --bg-fill /home/vssblt/Pictures/壁纸/wallhaven-508096.jpg /home/vssblt/Pictures/壁纸/v2-f21709dbcbb040657b1df70e49943b54_r.jpg
+exec --no-startup-id /usr/bin/feh --bg-fill ~/Pictures/wallpaper/wallhaven-508096.jpg ~/Pictures/wallpaper/v2-f21709dbcbb040657b1df70e49943b54_r.jpg
